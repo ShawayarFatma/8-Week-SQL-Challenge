@@ -26,7 +26,7 @@ This challenge consists of 8 real-world inspired SQL case studies, each requirin
 
 | Case Study | Topic | Status |
 |-----------|-------|--------|
-| [Case Study #1 - Danny's Diner](Case%20Study%20%231%20-%20Danny%E2%80%99s%20Diner) | Restaurant Customer Analysis | ✅ Complete |
+| [Case Study #1 - Danny's Diner](Case%20Study%20%231%20-%20Danny's%20Diner) | Restaurant Customer Analysis | ✅ Complete |
 | Case Study #2 | Pizza Runner | ⏳ In Progress |
 | Case Study #3 | Foodie-Fi | ⏳ In Progress |
 | Case Study #4 | Data Bank | ⏳ In Progress |
