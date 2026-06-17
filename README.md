@@ -22,7 +22,7 @@ This challenge consists of 8 real-world inspired SQL case studies, each requirin
 
 ---
 
-## 🎯 Case Studies
+##  Case Studies
 
 | Case Study | Topic | Status |
 |-----------|-------|--------|
@@ -37,7 +37,7 @@ This challenge consists of 8 real-world inspired SQL case studies, each requirin
 
 ---
 
-## 💡 Skills Demonstrated
+##  Skills Demonstrated
 
 - **SQL Query Writing**: SELECT, JOIN, GROUP BY, HAVING, WHERE, ORDER BY
 - **Data Aggregation**: SUM, COUNT, AVG, MIN, MAX
@@ -49,7 +49,7 @@ This challenge consists of 8 real-world inspired SQL case studies, each requirin
 
 ---
 
-## 🙏 Acknowledgments
+##  Acknowledgments
 
 Special thanks to [Data with Danny](https://www.datawithdanny.com/) for designing such insightful and engaging case studies that strengthen real-world SQL skills. 👋🏻
 
