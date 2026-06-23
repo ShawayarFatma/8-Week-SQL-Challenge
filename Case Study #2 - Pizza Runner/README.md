@@ -1,5 +1,5 @@
 -----------------Data Cleaning & Transformation--------------
-
+```sql
 craete temp table customer_orders_temp as
 select 
   order_id, 
@@ -17,7 +17,8 @@ select
 from customer_orders;
 
 select * from customer_orders_temp;
-
+```
+```sql
 create temp table runner_orders_temp as
 select 
   order_id, 
@@ -43,7 +44,8 @@ select
 	  else cancellation
 	  end as cancellation
 from runner_orders;
-
+```
+```sql
 alter table runner_orders_temp
 alter column pickup_time type TIMESTAMP
 using pickup_time::TIMESTAMP;
@@ -57,31 +59,31 @@ alter column duration type int
 using distance::int;
 
 select * from runner_orders_temp;
-
+```
 ------------------------Pizza Metrics-------------------------
 
 1.How many pizzas were ordered?
-
+```sql
 select count(pizza_id) as pizzas_ordered
 from customer_orders_temp;
-
+```
 
 2.How many unique customer orders were made?
-
+```sql
 select count(distinct order_id) as unique_orders
 from customer_orders_temp;
-
+```
 
 3.How many successful orders were delivered by each runner?
-
+```sql
 select runner_id, count(order_id) as successful_orders
 from runner_orders_temp
 where cancellation is null
 group by 1;
-
+```
 
 4.How many of each type of pizza was delivered?
-
+```sql
 select p.pizza_name, 
   count(c.pizza_id) as delivered_pizzas
 from customer_orders_temp as c
@@ -91,10 +93,10 @@ join pizza_names as p
   on c.pizza_id = p.pizza_id
 where r.cancellation is null
 group by 1;
-
+```
 
 5.How many Vegetarian and Meatlovers were ordered by each customer?
-
+```sql
 select c.customer_id, p.pizza_name, 
   count(p.pizza_name) as pizzas_ordered
 from customer_orders_temp as c
@@ -102,10 +104,10 @@ join pizza_names as p
   on c.pizza_id= p.pizza_id
 group by 1, 2
 order by 1;
-
+```
 
 6.What was the maximum number of pizzas delivered in a single order?
-
+```sql
 with cte as
 (
   select c.order_id, count(c.pizza_id) as pizza_per_order
@@ -117,10 +119,10 @@ with cte as
 )
 select max(pizza_per_order) as pizza_count
 from cte;
-
+```
 
 7.For each customer, how many delivered pizzas had at least 1 change and how many had no changes?
-
+```sql
 select c.customer_id,
 sum(case when c.exclusions != ' ' or c.extras != ' ' then 1 else 0 end) as changed_pizzas,
 sum(case when c.exclusions = ' ' and c.extras = ' ' then 1 else 0 end) 
@@ -131,10 +133,10 @@ join runner_orders_temp as r
 where r.cancellation is null
 group by 1
 order by 1;
-
+```
 
 8.How many pizzas were delivered that had both exclusions and extras?
-
+```sql
 select  
 sum(case when exclusions !='' and extras !='' then 1
     else 0 end) as with_exclusions_extras
@@ -142,20 +144,21 @@ FROM customer_orders_temp as c
 join runner_orders_temp as r
   on c.order_id = r.order_id
 where r.cancellation is null;
-
+```
 
 9.What was the total volume of pizzas ordered for each hour of the day?
-
+```sql
 select extract(hour from order_time) AS hour_of_day, 
 count(order_id) as pizza_count
 from customer_orders_temp
 group by 1
 order by 1;
-
+```
 
 10.What was the volume of orders for each day of the week?
-
+```sql
 select to_char(order_time, 'Day') as order_day,
 count(order_id) as pizzas_ordered
 from customer_orders_temp
 group by 1;
+```
